@@ -1,0 +1,32 @@
+format 215
+
+subject 128002 "Système / Smartphone"
+  xyzwh 203 82 2000 464 437
+classcanvas 128130 class_ref 128002 // touriste
+  simpleclassdiagramsettings end
+  xyz 103 201 2000
+end
+classcanvas 128386 class_ref 128258 // capteur
+  simpleclassdiagramsettings class_drawing_mode entity end
+  xyz 729 205 2000
+end
+classcanvas 128514 class_ref 128386 // casque_VR
+  simpleclassdiagramsettings class_drawing_mode entity end
+  xyz 727 324 2000
+end
+usecasecanvas 128642 usecase_ref 128002 // Scanner identifiant du capteur
+  xyzwh 327 148 3005 191 53 label_xy 352 166
+end
+usecasecanvas 128770 usecase_ref 128130 // Visualiser la vidéo VR
+  xyzwh 366 323 3005 123 41 label_xy 373 335
+end
+simplerelationcanvas 129154 simplerelation_ref 128130
+  from ref 128770 z 3006 stereotype "<<include>>" xyz 394.5 260.5 3000 to ref 128642
+end
+line 129282 ----
+  from ref 128130 z 3006 to ref 128770
+line 129410 ----
+  from ref 128770 z 3006 to ref 128514
+line 129538 ----
+  from ref 128642 z 3006 to ref 128386
+end
