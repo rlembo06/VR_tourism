@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">VR_Tourism</string>
+    <string name="btn1">Lancer le service de géolocalisation</string>
+    <string name="video">Lancer la video</string>
+</resources>
