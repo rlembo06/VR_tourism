@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VR_Tourism</string>
-    <string name="btn1">Lancer le service de géolocalisation</string>
-    <string name="video">Lancer la video</string>
+    <string name="app_name">VR Tourism</string>
+    <string name="asyncGET">SYNCHRONE GET</string>
+    <string name="syncGET">ASYNCHRONE GET</string>
 </resources>

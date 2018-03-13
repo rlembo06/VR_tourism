@@ -1,4 +1,4 @@
-package project.rlembo.vr_tourism;
+package rlembo.com.vr_tourism;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("project.rlembo.vr_tourism", appContext.getPackageName());
+        assertEquals("rlembo.com.vr_tourism", appContext.getPackageName());
     }
 }

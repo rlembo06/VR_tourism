@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/activity_main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="project.rlembo.vr_tourism.MainActivity">
-
+    tools:context="rlembo.com.vr_tourism.MainActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent" >
+
+        <Button
+            android:id="@+id/syncGET"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/syncGET" />
+
+        <Button
+            android:id="@+id/asyncGET"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/asyncGET" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/btn1"
-            android:id="@+id/serviceBtn" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/video"
-            android:id="@+id/serviceVideo" />
+            android:id="@+id/txtString" />
 
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

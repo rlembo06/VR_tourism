@@ -1,4 +1,4 @@
-package project.rlembo.vr_tourism;
+package rlembo.com.vr_tourism;
 
 import org.junit.Test;
 

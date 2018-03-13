@@ -2,9 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+    buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "project.rlembo.vr_tourism"
-        minSdkVersion 26
+        applicationId "rlembo.com.vr_tourism"
+        minSdkVersion 20
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -26,5 +27,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    compile("org.springframework.boot:spring-boot-starter-web:2.0.0.RELEASE")
+    compile 'com.squareup.okhttp3:okhttp:3.10.0'
 }
