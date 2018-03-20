@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VR-Video-1", "VR-Video-1.csproj", "{92A4900D-3012-4ED0-E91A-BA955F58D424}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VR-Video-1.Editor", "VR-Video-1.Editor.csproj", "{960CE222-202E-200B-F5EF-9D79F6D8D051}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92A4900D-3012-4ED0-E91A-BA955F58D424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92A4900D-3012-4ED0-E91A-BA955F58D424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92A4900D-3012-4ED0-E91A-BA955F58D424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92A4900D-3012-4ED0-E91A-BA955F58D424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{960CE222-202E-200B-F5EF-9D79F6D8D051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{960CE222-202E-200B-F5EF-9D79F6D8D051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{960CE222-202E-200B-F5EF-9D79F6D8D051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{960CE222-202E-200B-F5EF-9D79F6D8D051}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
