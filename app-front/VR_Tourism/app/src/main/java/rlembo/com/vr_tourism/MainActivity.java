@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -11,6 +12,7 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.os.AsyncTask;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,12 +21,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import be.appfoundry.nfclibrary.utilities.sync.NfcReadUtilityImpl;
 import okhttp3.Call;
@@ -44,11 +50,14 @@ import okhttp3.Response;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public String url = "https://reqres.in/api/users/2";
+    //public String url = "https://reqres.in/api/users/2";
+    public String url = "http://10.0.2.4/read.php?idTad=";
+
     private PendingIntent pendingIntent;
     private IntentFilter[] mIntentFilters;
     private String[][] mTechLists;
     private NfcAdapter mNfcAdapter;
+    private Gson gson = new Gson();
 
     Button syncGET, asyncGET;
     TextView txtString;
@@ -72,6 +81,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtString = findViewById(R.id.txtString);
     }
 
+    /*
+    private void showWirelessSettings() {
+        Toast.makeText(this, "You need to enable NFC", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+        startActivity(intent);
+    }
+    */
+
     public void onResume() {
         super.onResume();
 
@@ -91,11 +108,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        for (String message : new NfcReadUtilityImpl().readFromTagWithMap(intent).values()) {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        for (String tagID : new NfcReadUtilityImpl().readFromTagWithMap(intent).values()) {
+            Toast.makeText(this, tagID, Toast.LENGTH_SHORT).show();
 
-            txtString.setText(message);
+            txtString.setText(tagID);
+            this.getVideo(tagID);
+
         }
+    }
+
+    public void getVideo (String tagID) {
+
+        OkHttpHandler okHttpHandler = new OkHttpHandler();
+
+        try {
+            String jsonString = okHttpHandler.execute(url + tagID).get();
+
+            List<List<Video>> videos1 = gson.fromJson(jsonString, List.class);
+            List<Video> videos2 = videos1.get(0);
+            Video video = videos2.get(0);
+
+            System.out.println(video.getLien_video());
+            System.out.println(video.toString());
+
+            //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+            //startActivity(browserIntent);
+        }
+        catch (InterruptedException e) { e.printStackTrace(); }
+        catch (ExecutionException e) { e.printStackTrace(); }
+
     }
 
     public void run(String url) throws IOException {
