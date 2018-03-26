@@ -2,6 +2,7 @@ package rlembo.com.vr_tourism;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -22,23 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
 import be.appfoundry.nfclibrary.utilities.sync.NfcReadUtilityImpl;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * TUTO :
@@ -48,18 +40,14 @@ import okhttp3.Response;
  * https://code.tutsplus.com/tutorials/reading-nfc-tags-with-android--mobile-17278
  * https://android.jlelse.eu/create-a-nfc-reader-application-for-android-74cf24f38a6f
  */
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    //public String url = "https://reqres.in/api/users/2";
-    public String url = "http://10.0.2.4/read.php?idTad=";
-
+public class MainActivity extends AppCompatActivity {
     private PendingIntent pendingIntent;
     private IntentFilter[] mIntentFilters;
     private String[][] mTechLists;
     private NfcAdapter mNfcAdapter;
     private Gson gson = new Gson();
 
-    Button syncGET, asyncGET;
+    //Button syncGET, asyncGET;
     TextView txtString;
 
     @Override
@@ -71,12 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
         mIntentFilters = new IntentFilter[]{new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED)};
         mTechLists = new String[][]{ new String[]{Ndef.class.getName()}, new String[]{NdefFormatable.class.getName()} };
-
-        syncGET = findViewById(R.id.syncGET);
-        asyncGET = findViewById(R.id.asyncGET);
-
-        syncGET.setOnClickListener(this);
-        asyncGET.setOnClickListener(this);
 
         txtString = findViewById(R.id.txtString);
     }
@@ -112,114 +94,88 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, tagID, Toast.LENGTH_SHORT).show();
 
             txtString.setText(tagID);
-            this.getVideo(tagID);
+            //this.getVideo(tagID);
 
         }
     }
 
-    public void getVideo (String tagID) {
-
-        OkHttpHandler okHttpHandler = new OkHttpHandler();
-
-        try {
-            String jsonString = okHttpHandler.execute(url + tagID).get();
-
-            List<List<Video>> videos1 = gson.fromJson(jsonString, List.class);
-            List<Video> videos2 = videos1.get(0);
-            Video video = videos2.get(0);
-
-            System.out.println(video.getLien_video());
-            System.out.println(video.toString());
-
-            //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
-            //startActivity(browserIntent);
-        }
-        catch (InterruptedException e) { e.printStackTrace(); }
-        catch (ExecutionException e) { e.printStackTrace(); }
-
+    public void onClickBtn(View v)
+    {
+        this.chargerVideo(1);
     }
 
-    public void run(String url) throws IOException {
+    public void chargerVideo(int idVideo){
+        try
+        {
+            // Loader
+            final ProgressDialog progress = new ProgressDialog(this);
+            progress.setTitle("Chargement");
+            progress.setMessage("Veuillez patienter on recherche la vidéo");
+            progress.setCancelable(false);
 
-        OkHttpClient client = new OkHttpClient();
+            // On affiche le loader.
+            progress.show();
 
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+            // On init une requete.
+            VrRequestHttp request = new VrRequestHttp();
 
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                call.cancel();
-            }
+            // On lance la requete.
+            request.getVideo(idVideo, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONArray object){}
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject object) {
+                    try {
+                        // On cache le loader
+                        progress.dismiss();
 
-                final String myResponse = response.body().string();
+                        // Le lien video existe.
+                        if(object.has("lien_video"))
+                        {
+                            // Affichage de la video
+                            txtString.setText(object.getString("lien_video"));
 
-                MainActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-
-                            JSONObject json = new JSONObject(myResponse);
-                            txtString.setText(
-                                    "First Name: "+json.getJSONObject("data").getString("first_name") + "\n" +
-                                    "Last Name: " + json.getJSONObject("data").getString("last_name")
-                            );
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            // On ouvre le lien de la vidéo avec l'app yt
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse(object.getString("lien_video")));
+                            startActivity(intent);
+                        }
+                        else if(object.has("message")){
+                            // aucune vidéo pour l'id X
+                            txtString.setText(object.getString("message"));
+                        }
+                        else
+                        {
+                            txtString.setText("La requete ne renvoi pas le lien de la vidéo");
                         }
                     }
-                });
-
-            }
-        });
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-
-            case R.id.syncGET:
-                OkHttpHandler okHttpHandler = new OkHttpHandler();
-                okHttpHandler.execute(url);
-
-            case R.id.asyncGET:
-                try {
-                    run(url);
+                    catch(JSONException erreur)
+                    {
+                        txtString.setText("Erreur" + erreur);
+                    }
                 }
-                catch (IOException e) { e.printStackTrace(); }
 
-            break;
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String t, Throwable throwable) {
+                    // On cache le loader
+                    progress.dismiss();
+
+                    txtString.setText("Erreur lancement de la requete :" + t);
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    // On cache le loader
+                    progress.dismiss();
+
+                    txtString.setText("Erreur lancement de la requete : " + errorResponse);
+                }
+            });
+        }
+        catch(JSONException erreur)
+        {
+            txtString.setText("Erreur lancement de la requete : " + erreur);
         }
     }
-
-    public class OkHttpHandler extends AsyncTask<String, Void, String> {
-
-        OkHttpClient client = new OkHttpClient();
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            Request.Builder builder = new Request.Builder();
-            builder.url(params[0]);
-            Request request = builder.build();
-
-            try {
-                Response response = client.newCall(request).execute();
-                return response.body().string();
-            }
-            catch (Exception e) { e.printStackTrace(); }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            txtString.setText(s);
-        }
-    }
-
 }

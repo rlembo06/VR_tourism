@@ -14,21 +14,18 @@
         android:layout_height="fill_parent" >
 
         <Button
-            android:id="@+id/syncGET"
+            android:id="@+id/btnTestRequest"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/syncGET" />
-
-        <Button
-            android:id="@+id/asyncGET"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/asyncGET" />
+            android:text="Test Requete"
+            android:onClick="onClickBtn"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txtString" />
+
+
 
     </LinearLayout>
 

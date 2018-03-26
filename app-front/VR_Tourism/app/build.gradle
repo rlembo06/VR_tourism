@@ -27,9 +27,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    compile 'com.squareup.okhttp3:okhttp:3.10.0'
+    //compile 'com.squareup.okhttp3:okhttp:3.10.0'
     compile 'be.appfoundry:nfc-lib:1.1'
     compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.loopj.android:android-async-http:1.4.9'
 }
 
 repositories {
