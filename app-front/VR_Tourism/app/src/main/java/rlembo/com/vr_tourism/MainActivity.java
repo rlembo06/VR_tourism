@@ -94,14 +94,17 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, tagID, Toast.LENGTH_SHORT).show();
 
             txtString.setText(tagID);
-            //this.getVideo(tagID);
-
+            try{
+                this.chargerVideo(Integer.parseInt(tagID));
+            }catch (NumberFormatException err){
+                System.out.println("Impossible de convertir l'id");
+            }
         }
     }
 
     public void onClickBtn(View v)
     {
-        this.chargerVideo(1);
+        this.chargerVideo(12);
     }
 
     public void chargerVideo(int idVideo){

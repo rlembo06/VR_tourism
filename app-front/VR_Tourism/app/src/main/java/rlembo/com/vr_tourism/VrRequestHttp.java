@@ -18,8 +18,8 @@ public class VrRequestHttp {
         parametres.put("idTag", idTag);
 
         // On Effectue une requete GET vers la page qui nous renvoi le lien de la vidéo.
-        //VrBackendRestClient.get("read.php", parametres, jsonHttpResponse);
+        VrBackendRestClient.get("read.php", parametres, jsonHttpResponse);
 
-        VrBackendRestClient.get("v2/5ab9627b2c0000810f1864b5", parametres, jsonHttpResponse);
+        //VrBackendRestClient.get("v2/5ab9627b2c0000810f1864b5", parametres, jsonHttpResponse);
     }
 }
