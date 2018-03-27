@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">VR Tourism</string>
+    <string name="asyncGET">SYNCHRONE GET</string>
+    <string name="syncGET">ASYNCHRONE GET</string>
+</resources>
