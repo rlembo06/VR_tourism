@@ -29,6 +29,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Collection;
+import java.util.List;
+
 import be.appfoundry.nfclibrary.utilities.sync.NfcReadUtilityImpl;
 import cz.msebera.android.httpclient.Header;
 
@@ -93,9 +96,12 @@ public class MainActivity extends AppCompatActivity {
         for (String tagID : new NfcReadUtilityImpl().readFromTagWithMap(intent).values()) {
             Toast.makeText(this, tagID, Toast.LENGTH_SHORT).show();
 
-            txtString.setText(tagID);
+            String[] parts = tagID.split("en");
+            String id = parts[1];
+
+            txtString.setText(id);
             try{
-                this.chargerVideo(Integer.parseInt(tagID));
+                this.chargerVideo(Integer.parseInt(id));
             }catch (NumberFormatException err){
                 System.out.println("Impossible de convertir l'id");
             }
@@ -104,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickBtn(View v)
     {
-        this.chargerVideo(12);
+        this.chargerVideo(1);
     }
 
     public void chargerVideo(int idVideo){
