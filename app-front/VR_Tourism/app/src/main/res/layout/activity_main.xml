@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    android:id="@+id/activity_main"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="rlembo.com.vr_tourism.MainActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
 
-        <Button
+        <!-- <Button
             android:id="@+id/btnTestRequest"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Test Requete"
-            android:onClick="onClickBtn"/>
+            android:onClick="onClickBtn"/>-->
 
         <TextView
+            android:id="@+id/txtString"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtString" />
+            android:layout_height="wrap_content" />
 
+        <TextView
+            android:id="@+id/textViewComment"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:text="Comment utiliser l'application ?"
+            android:textAlignment="center"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="
+1 - Approcher un tag NFC.\n
+2 - L'application récupère la vidéo depuis le serveur.\n
+3 - L'application ouvre l'application youtube.\n
+4 - Vous devez mettre en plein écran la vidéo youtube.\n
+5 - Vous devez ensuite cliquer sur le bouton VR en bas à droite de la vidéo." />
 
 
     </LinearLayout>

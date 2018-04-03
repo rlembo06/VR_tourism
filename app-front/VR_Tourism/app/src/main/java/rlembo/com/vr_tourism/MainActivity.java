@@ -108,10 +108,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickBtn(View v)
+    /*public void onClickBtn(View v)
     {
         this.chargerVideo(1);
-    }
+    }*/
 
     public void chargerVideo(int idVideo){
         try
