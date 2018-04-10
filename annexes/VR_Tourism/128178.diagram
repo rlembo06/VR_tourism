@@ -1,0 +1,32 @@
+format 216
+
+classcanvas 128050 class_ref 128050 // VrBackendRestClient
+  classdiagramsettings member_max_width 0 end
+  xyz 104.654 175.752 2000
+end
+classcanvas 128178 class_ref 128178 // VrRequestHttp
+  classdiagramsettings member_max_width 0 end
+  xyz 198.247 296.094 2000
+end
+classcanvas 128306 class_ref 128306 // AsyncHttpClient
+  classdiagramsettings member_max_width 0 end
+  xyz 308.824 95.1896 2000
+end
+note 128690 "Librairie : Android Asynchronous 
+Http Client(Auteur : James Smith)
+"
+  xyzwh 446.439 98.0204 2000 185 51
+relationcanvas 128434 relation_ref 128050 // <directional composition>
+  decenter_begin 481
+  from ref 128050 z 2001 to ref 128306
+  role_a_pos 367 140 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128562 relation_ref 128178 // <unidirectional association>
+  from ref 128178 z 2001 to ref 128050
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+line 128818 -_-_
+  from ref 128690 z 2001 to ref 128306
+end

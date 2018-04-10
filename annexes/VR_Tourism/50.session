@@ -1,0 +1,14 @@
+window_sizes 1920 1017 224 1691 867 104
+
+diagrams
+  usecasediagram_ref 128002 // main
+    1076 608 100 A4 0 0
+  active  classdiagram_ref 128178 // diagClass
+    1691 867 110 A4 0 0
+end
+show_stereotypes
+open
+  class_ref 128050 // VrBackendRestClient
+  class_ref 128178 // VrRequestHttp
+end
+end

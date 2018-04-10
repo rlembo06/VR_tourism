@@ -1,4 +1,4 @@
-format 215
+format 216
 
 subject 128002 "Système / Smartphone"
   xyzwh 203 82 2000 464 437
@@ -21,7 +21,7 @@ usecasecanvas 128770 usecase_ref 128130 // Visualiser la vidéo VR
   xyzwh 366 323 3005 123 41 label_xy 373 335
 end
 simplerelationcanvas 129154 simplerelation_ref 128130
-  from ref 128770 z 3006 stereotype "<<include>>" xyz 394.5 260.5 3000 to ref 128642
+  from ref 128770 z 3006 stereotype "<<include>>" xyz 394 260 3000 to ref 128642
 end
 line 129282 ----
   from ref 128130 z 3006 to ref 128770

@@ -1,7 +1,7 @@
-format 215
+format 216
 "VR_Tourism"
-  revision 1
-  modified_by 2 "lr706510"
+  revision 2
+  modified_by 50 "em612865"
 
 
   
@@ -151,6 +151,138 @@ format 215
 	  stereotype "include"
 	  on usecase_ref 128002 // Scanner identifiant du capteur
       end
+    end
+  end
+
+  usecaseview 128050 "viewHttp"
+    
+    usecasediagramsettings end
+    
+    sequencediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    classdiagramsettings member_max_width 0 end
+    
+    objectdiagramsettings end
+    
+    statediagramsettings
+     end
+    
+    activitydiagramsettings
+     end
+    classdiagram 128178 "diagClass"
+      classdiagramsettings draw_all_relations yes hide_attributes no hide_operations no hide_getset_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_context namespace show_members_multiplicity yes show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_dir yes show_parameter_name yes package_name_in_tab yes show_context_mode namespace show_relation_modifiers yes show_relation_visibility yes end
+      size A4
+    end
+
+    class 128050 "VrBackendRestClient"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128050 "URL"
+	private explicit_type ""
+	init_value "string"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128050 "getAbsoluteUrl"
+	class_operation public explicit_return_type ""
+	nparams 1
+	  param in name "fichier" explicit_type "String"
+	
+	
+	
+	
+	
+      end
+
+      operation 128178 "get"
+	class_operation public explicit_return_type ""
+	nparams 3
+	  param in name "fichier" explicit_type "String"
+	  param in name "requestParameters" explicit_type "RequestParams"
+	  param in name "callback" explicit_type "AsyncHttpResponseHandler"
+	
+	
+	
+	
+	
+      end
+
+      operation 128306 "post"
+	class_operation public explicit_return_type ""
+	nparams 3
+	  param in name "fichier" explicit_type "String"
+	  param in name "requestParameters" explicit_type "RequestParams"
+	  param in name "callback" explicit_type "AsyncHttpResponseHandler"
+	
+	
+	
+	
+	
+      end
+
+      classrelation 128050 // client (<directional composition>)
+	relation 128050 *-->
+	  a role_name "client" class_relation private
+	    classrelation_ref 128050 // client (<directional composition>)
+	  b parent class_ref 128306 // AsyncHttpClient
+      end
+    end
+
+    class 128178 "VrRequestHttp"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 128434 "getVideo"
+	class_operation public explicit_return_type ""
+	nparams 2
+	  param in name "idVideo" explicit_type "int"
+	  param in name "callback" explicit_type "JsonHttpResponseHandler"
+	
+	
+	
+	
+	
+      end
+
+      classrelation 128178 // <unidirectional association>
+	relation 128178 --->
+	  a role_name "" private
+	    classrelation_ref 128178 // <unidirectional association>
+	  b parent class_ref 128050 // VrBackendRestClient
+      end
+    end
+
+    class 128306 "AsyncHttpClient"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
     end
   end
 end
