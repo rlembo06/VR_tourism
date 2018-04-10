@@ -11,7 +11,7 @@ import com.loopj.android.http.RequestParams;
  */
 
 public class VrBackendRestClient {
-    private static final String URL = "http://10.0.2.4/";
+    private static final String URL = "http://10.0.2.10/";
     //private static final String URL = "http://www.mocky.io/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
