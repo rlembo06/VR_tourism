@@ -7,12 +7,14 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 /**
+ * @author El karmourdi Mohamed
  * Created by EM612865 on 20/03/2018.
+ *
+ * Classe permettant de lancer des requêtes http (GET et POST) vers le serveur (URl).
  */
 
 public class VrBackendRestClient {
     private static final String URL = "http://10.0.2.10/";
-    //private static final String URL = "http://www.mocky.io/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 

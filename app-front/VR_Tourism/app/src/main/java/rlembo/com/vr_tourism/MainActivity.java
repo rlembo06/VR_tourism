@@ -43,6 +43,12 @@ import cz.msebera.android.httpclient.Header;
  * https://code.tutsplus.com/tutorials/reading-nfc-tags-with-android--mobile-17278
  * https://android.jlelse.eu/create-a-nfc-reader-application-for-android-74cf24f38a6f
  */
+
+/**
+ * @auteur : Lembo Romain & El Karmoudi Mohamed
+ *
+ * Classe principal de l'application.
+ */
 public class MainActivity extends AppCompatActivity {
     private PendingIntent pendingIntent;
     private IntentFilter[] mIntentFilters;
@@ -53,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
     //Button syncGET, asyncGET;
     TextView txtString;
 
+    /**
+     * @author Lembo Romain
+     * Initialisation et démarrage de l'application.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,14 +77,10 @@ public class MainActivity extends AppCompatActivity {
         txtString = findViewById(R.id.txtString);
     }
 
-    /*
-    private void showWirelessSettings() {
-        Toast.makeText(this, "You need to enable NFC", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
-        startActivity(intent);
-    }
-    */
-
+    /**
+     * @author Lembo Romain
+     * Application relancé. Exécute le scan du Tag NFC
+     */
     public void onResume() {
         super.onResume();
 
@@ -82,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * @author Lembo Romain
+     * Application en écoute, en attente de scan du tag NFC.
+     */
     public void onPause(){
         super.onPause();
 
@@ -90,6 +101,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * @author Lembo Romain
+     * Lecture du Tag NFC.
+     * Appelle de la méthode qui récupère la videos sur Youtube auprès du back-end.
+     * @param intent
+     */
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -108,11 +125,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*public void onClickBtn(View v)
-    {
-        this.chargerVideo(1);
-    }*/
-
+    /**
+     * @author El karmourdi Mohamed
+     * Méthode permettant de récupérer la video Youtube du back-end.
+     * @param idVideo
+     */
     public void chargerVideo(int idVideo){
         try
         {

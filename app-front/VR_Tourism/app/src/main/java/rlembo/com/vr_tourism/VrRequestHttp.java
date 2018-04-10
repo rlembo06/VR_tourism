@@ -8,7 +8,10 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 
 /**
+ * @author El karmourdi Mohamed
  * Created by EM612865 on 20/03/2018.
+ *
+ * Classe appellé par la classe principal (MainActivity) pour lire le lien de la vidéo depuis le serveur.
  */
 
 public class VrRequestHttp {
@@ -19,7 +22,5 @@ public class VrRequestHttp {
 
         // On Effectue une requete GET vers la page qui nous renvoi le lien de la vidéo.
         VrBackendRestClient.get("read.php", parametres, jsonHttpResponse);
-
-        //VrBackendRestClient.get("v2/5ab9627b2c0000810f1864b5", parametres, jsonHttpResponse);
     }
 }
