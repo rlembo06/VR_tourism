@@ -40,7 +40,7 @@ import cz.msebera.android.httpclient.Header;
  * https://www.journaldev.com/13629/okhttp-android-example-tutorial
  * http://sberfini.developpez.com/tutoriaux/android/nfc/
  * http://miageprojet2.unice.fr/User:EdouardAmosse/MBDS_-_CASABLANCA_2014-2015/Lecture_et_Ecriture_de_tags_NFC_avec_Android
- * https://code.tutsplus.com/tutorials/reading-nfc-tags-with-android--mobile-17278
+ * https://code.tutsplus.com/tutorials/reading-nfc-tags-with-android--mobile-17278o
  * https://android.jlelse.eu/create-a-nfc-reader-application-for-android-74cf24f38a6f
  */
 
@@ -70,7 +70,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+        pendingIntent = PendingIntent.getActivity(
+                this,
+                0,
+                new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),
+                0
+        );
         mIntentFilters = new IntentFilter[]{new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED)};
         mTechLists = new String[][]{ new String[]{Ndef.class.getName()}, new String[]{NdefFormatable.class.getName()} };
 
@@ -85,7 +90,12 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         if (mNfcAdapter != null) {
-            mNfcAdapter.enableForegroundDispatch(this, pendingIntent, mIntentFilters, mTechLists);
+            mNfcAdapter.enableForegroundDispatch(
+                    this,
+                    pendingIntent,
+                    mIntentFilters,
+                    mTechLists
+            );
         }
     }
 
