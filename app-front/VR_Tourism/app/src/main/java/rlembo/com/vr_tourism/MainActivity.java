@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * @author El karmourdi Mohamed
-     * Méthode permettant de récupérer la video Youtube du back-end.
+     * Méthode permettant de récupérer une vidéo Youtube depuis le back-end.
      * @param idVideo
      */
     public void chargerVideo(int idVideo){
@@ -158,40 +158,33 @@ public class MainActivity extends AppCompatActivity {
             // On lance la requete.
             request.getVideo(idVideo, new JsonHttpResponseHandler() {
                 @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONArray object){}
-
-                @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject object) {
                     try {
                         // On cache le loader
                         progress.dismiss();
 
-                        // Le lien video existe.
-                        if(object.has("lien_video"))
-                        {
+                        // Le lien vidéo existe.
+                        if(object.has("lien_video")){
                             // Affichage de la video
                             txtString.setText(object.getString("lien_video"));
 
-                            // On ouvre le lien de la vidéo avec l'app yt
+                            // On ouvre le lien de la vidéo avec l'application youtube.
                             Intent intent = new Intent(Intent.ACTION_VIEW);
                             intent.setData(Uri.parse(object.getString("lien_video")));
                             startActivity(intent);
-                        }
-                        else if(object.has("message")){
-                            // aucune vidéo pour l'id X
+                        }else if(object.has("message")){
+                            // Aucune vidéo pour l'id X
                             txtString.setText(object.getString("message"));
-                        }
-                        else
-                        {
+                        }else{
                             txtString.setText("La requete ne renvoi pas le lien de la vidéo");
                         }
-                    }
-                    catch(JSONException erreur)
-                    {
+                    }catch(JSONException erreur){
                         txtString.setText("Erreur" + erreur);
                     }
                 }
 
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONArray object){}
                 @Override
                 public void onFailure(int statusCode, Header[] headers, String t, Throwable throwable) {
                     // On cache le loader
@@ -199,7 +192,6 @@ public class MainActivity extends AppCompatActivity {
 
                     txtString.setText("Erreur lancement de la requete :" + t);
                 }
-
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                     // On cache le loader
