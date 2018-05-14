@@ -1,12 +1,17 @@
-window_sizes 1920 1017 206 1709 865 104
+window_sizes 958 1008 206 747 858 104
 
 diagrams
-  active  usecasediagram_ref 128002 // main
+  usecasediagram_ref 128002 // main
     1709 865 100 A4 0 0
+  classdiagram_ref 128178 // diagClass
+    1357 693 100 A4 0 0
+  active  sequencediagram_ref 134530 // diagSeq
+    747 858 100 A4 0 0
 end
 show_stereotypes
-selected usecasediagram_ref 128002 // main
+selected class_ref 128050 // VrBackendRestClient
 open
   usecaseview_ref 128002 // UC
+  usecaseview_ref 128050 // viewHttp
 end
 end

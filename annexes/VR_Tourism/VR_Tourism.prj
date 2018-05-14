@@ -1,7 +1,7 @@
 format 216
 "VR_Tourism"
-  revision 2
-  modified_by 50 "em612865"
+  revision 3
+  modified_by 2 "moh"
 
 
   
@@ -274,6 +274,23 @@ format 216
     end
 
     class 128306 "AsyncHttpClient"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    sequencediagram 134530 "diagSeq"
+      sequencediagramsettings end
+      overlapping_bars size A4
+    end
+
+    class 134914 "Application"
       visibility package 
       cpp_decl ""
       java_decl ""

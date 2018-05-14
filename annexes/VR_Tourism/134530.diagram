@@ -1,0 +1,76 @@
+format 216
+
+classinstance 128002 class_ref 128306 // AsyncHttpClient
+  name ""   xyz 577 4 2000 life_line_z 2000
+classinstance 128130 class_ref 128178 // VrRequestHttp
+  name ""   xyz 298 4 2000 life_line_z 2000
+classinstance 128258 class_ref 128050 // VrBackendRestClient
+  name ""   xyz 429 4 2000 life_line_z 2000
+classinstance 128386 class_ref 134914 // Application
+  name ""   xyz 123 4 2000 life_line_z 2000
+durationcanvas 128514 classinstance_ref 128386 // :Application
+  xyzwh 151 52 2010 11 110
+  overlappingdurationcanvas 128898
+    xyzwh 157 73 2020 11 79
+  end
+end
+durationcanvas 129154 classinstance_ref 128130 // :VrRequestHttp
+  xyzwh 335 116 2010 11 149
+  overlappingdurationcanvas 130434
+    xyzwh 341 230 2020 11 25
+  end
+end
+durationcanvas 129410 classinstance_ref 128258 // :VrBackendRestClient
+  xyzwh 482 125 2010 11 89
+end
+durationcanvas 129922 classinstance_ref 128002 // :AsyncHttpClient
+  xyzwh 617 138 2010 11 52
+end
+lostfoundmsgsupport 128642 xyz 50 54 2015
+msg 128770 found_synchronous
+  from lostfoundmsgsupport_ref 128642
+  to durationcanvas_ref 128514
+  yz 52 2015 explicitmsg "id tag nfc"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 83 38
+reflexivemsg 129026 synchronous
+  to durationcanvas_ref 128898
+  yz 73 2025 explicitmsg "chargerVideo(idTag)"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 192 69
+msg 129282 asynchronous
+  from durationcanvas_ref 128898
+  to durationcanvas_ref 129154
+  yz 116 2025 explicitmsg "getVideo(idTag, callback)"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 192 102
+msg 129538 synchronous
+  from durationcanvas_ref 129154
+  to durationcanvas_ref 129410
+  yz 127 2030 explicitmsg "get(idTag)"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 397 110
+msg 130050 synchronous
+  from durationcanvas_ref 129410
+  to durationcanvas_ref 129922
+  yz 138 2035 explicitmsg "get()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 544 124
+msg 130178 return
+  from durationcanvas_ref 129922
+  to durationcanvas_ref 129410
+  yz 179 2015 explicitmsg "reponse"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 537 165
+msg 130306 return
+  from durationcanvas_ref 129410
+  to durationcanvas_ref 129154
+  yz 203 2020 explicitmsg "reponse"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 396 189
+reflexivemsg 130562 synchronous
+  to durationcanvas_ref 130434
+  yz 230 2025 explicitmsg "callback()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 384 227
+end
